@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Maxence Roy
+1957042
+Assignment 2
+-->
+
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedalTracker.MainPage"
+            xmlns:local="clr-namespace:MedalTracker"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom">
+
+    <TabbedPage.BarBackgroundColor>Gold</TabbedPage.BarBackgroundColor>
+
+    <NavigationPage Title="Countries" IconImageSource="olympics32.png" 
+                BarBackgroundColor="Gold" BarTextColor="DarkSlateGray">
+    <x:Arguments>
+        <local:CountriesPage/>
+    </x:Arguments>
+    </NavigationPage>
+    <local:ChartsPage Title="Charts" IconImageSource="charts32.png"/>
+
+</TabbedPage>

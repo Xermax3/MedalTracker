@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Maxence Roy
+1957042
+Assignment 2
+-->
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedalTracker.CountriesPage"
+             xmlns:local="clr-namespace:MedalTracker.Models"
+             Title="Olympic Medals">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnSort" Text="Sort" Clicked="btnSort_Clicked" IconImageSource="sortdown30.png"/>
+        <ToolbarItem Text="Share" Clicked="btnShare_Clicked" IconImageSource="share30.png"/>
+        <ToolbarItem Text="Add" Clicked="btnAdd_Clicked" IconImageSource="add30.png"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <ListView x:Name="lvCountries" SelectionMode="None" ItemTapped="lvCountries_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell BindingContext="{Binding Source={RelativeSource AncestorType={x:Type local:Country}}}"
+                            ImageSource="{Binding FlagURL}" 
+                            Text="{Binding Name}"
+                            Detail="{Binding Total, StringFormat='Medals # {0}'}" 
+                            TextColor="{Binding Color}">
+                            <ImageCell.ContextActions>
+                                <MenuItem Text="Edit" CommandParameter="{Binding .}" Clicked="btnEdit_Clicked"/>
+                                <MenuItem Text="Delete" CommandParameter="{Binding .}" Clicked="btnDelete_Clicked"/>
+                            </ImageCell.ContextActions>
+                        </ImageCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

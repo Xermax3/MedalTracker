@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Maxence Roy
+1957042
+Assignment 2
+-->
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedalTracker.CountryForm"
+             xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="MedalName">
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="Grid.Column" Value="0"/>
+        </Style>
+        <Style TargetType="Stepper">
+            <Setter Property="ScaleX" Value="0.7"/>
+            <Setter Property="Grid.Column" Value="1"/>
+        </Style>
+        <Style TargetType="Label" x:Key="MedalCount">
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="Grid.Column" Value="2"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView HasUnevenRows="True">
+                <TableRoot>
+                    
+                    <TableSection Title="Country">
+                        <EntryCell Label="Name" Placeholder="Enter country name" Text="{Binding Name}"/>
+                        <EntryCell Label="Flag" Placeholder="Enter URL" Text="{Binding FlagURL}"/>
+                    </TableSection>
+                    
+                    <TableSection Title="Medals Acquired">
+                        <ViewCell>
+                            <Grid Padding="15" RowDefinitions="*,*,*" ColumnDefinitions="4*,6*,1*">
+
+                                <Label Text="Gold Medals" Style="{StaticResource MedalName}" Grid.Row="0"/>
+                                <Stepper x:Name="stepperGold" Grid.Row="0" Value="{Binding Gold}"/>
+                                <Label Text="{Binding Source={x:Reference stepperGold}, Path=Value}" Style="{StaticResource MedalCount}" BackgroundColor="Gold" Grid.Row="0"/>
+                                
+                                <Label Text="Silver Medals" Style="{StaticResource MedalName}" Grid.Row="1"/>
+                                <Stepper x:Name="stepperSilver" Grid.Row="1" Value="{Binding Silver}"/>
+                                <Label Text="{Binding Source={x:Reference stepperSilver}, Path=Value}" Style="{StaticResource MedalCount}" BackgroundColor="Silver" Grid.Row="1"/>
+                                
+                                <Label Text="Bronze Medals" Style="{StaticResource MedalName}" Grid.Row="2"/>
+                                <Stepper x:Name="stepperBronze" Grid.Row="2" Value="{Binding Bronze}"/>
+                                <Label Text="{Binding Source={x:Reference stepperBronze}, Path=Value}" Style="{StaticResource MedalCount}" BackgroundColor="Goldenrod" Grid.Row="2"/>
+                                
+                            </Grid>
+                        </ViewCell>
+                    </TableSection>
+                    
+                    <TableSection Title="Color">
+                        <ViewCell>
+                            <colorpicker:ColorWheel x:Name="colorWheel" SelectedColor="{Binding Color}"/>
+                        </ViewCell>
+                    </TableSection>
+                    
+                </TableRoot>
+            </TableView>
+            <Button Text="Save" Clicked="btnSave_Clicked"/>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
